@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+.next/
+out/
+
+# Environment variables
+.env*
+!.env.example
+
+# Testing
+coverage/
+junit.xml
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+VolumeIcon.icns
+
+# Next.js
+.next/
+out/
+.svelte-kit/
+.craftsman/
+
+# TypeScript
+*.tsbuildinfo
+*.bak
+
+# Runtime
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Logs
+logs/
+*.log
+
+# Optional npm cache
+.nyc_output
+coverage/
+.nyc_output/
+
+# Turbopack
+.turbopack/

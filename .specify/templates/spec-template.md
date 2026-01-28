@@ -84,16 +84,31 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST follow spec-first development - all work originates from files inside the /specs directory
+- **FR-002**: System MUST ensure agent responsibility boundaries are respected - each agent operates within its defined role
+- **FR-003**: System MUST ensure no manual coding - all implementation performed by agents based on specs
+- **FR-004**: System MUST handle authentication via Better Auth on frontend - backend never manages passwords or sessions
+- **FR-005**: System MUST derive user identity from verified JWT token
+- **FR-006**: System MUST ensure user_id is never accepted from URL parameters or request bodies
+- **FR-007**: System MUST require authentication for all API endpoints (unless explicitly stated otherwise)
+- **FR-008**: System MUST return 401 for unauthorized requests
+- **FR-009**: System MUST ensure users can only access and modify their own data
+- **FR-010**: System MUST follow RESTful conventions for API endpoints
+- **FR-011**: System MUST match API endpoints exactly to API specs
+- **FR-012**: System MUST align backend behavior with acceptance criteria, not assumptions
+- **FR-013**: System MUST ensure the users table is owned and managed externally by Better Auth
+- **FR-014**: System MUST ensure backend database schema does not duplicate user credentials
+- **FR-015**: System MUST ensure all task records reference users via user_id
+- **FR-016**: System MUST ensure all backend communication goes through a centralized API client
+- **FR-017**: System MUST ensure JWT tokens are securely handled and attached automatically to requests
+- **FR-018**: System MUST ensure protected pages are not accessible to unauthenticated users
+- **FR-019**: System MUST maintain frontend and backend in a single monorepo with clear separation
+- **FR-020**: System MUST validate every feature against its acceptance criteria
+- **FR-021**: System MUST perform integration testing to confirm end-to-end behavior
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-022**: System MUST [specific capability] - [NEEDS CLARIFICATION: details not specified]
 
 ### Key Entities *(include if feature involves data)*
 

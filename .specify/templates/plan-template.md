@@ -31,7 +31,57 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### Spec-First Development Compliance
+- [ ] All work originates from files inside the /specs directory
+- [ ] Specifications are the single source of truth
+- [ ] No implementation without explicit, approved specification
+
+### Agent Responsibility Boundaries Compliance
+- [ ] Plan respects agent role boundaries
+- [ ] Cross-cutting changes coordinated through Primary Orchestrator
+- [ ] No agent performing another agent's responsibility
+
+### No Manual Coding Rule Compliance
+- [ ] Plan supports agent-based implementation
+- [ ] No provisions for manual human code writing
+- [ ] Deviations reflected in specs first
+
+### Authentication & Identity Rule Compliance
+- [ ] Frontend authentication handled by Better Auth
+- [ ] Backend does not manage passwords or sessions
+- [ ] User identity derived from verified JWT token
+- [ ] user_id not accepted from URL parameters or request bodies
+
+### Security First Compliance
+- [ ] All API endpoints require authentication (unless explicitly stated)
+- [ ] Unauthorized requests return 401
+- [ ] User data isolation at API and database levels
+- [ ] Users can only access/modify own data
+
+### API Design Rules Compliance
+- [ ] RESTful conventions followed
+- [ ] API endpoints match API specs exactly
+- [ ] Backend behavior aligns with acceptance criteria
+
+### Database Ownership Rule Compliance
+- [ ] Users table managed externally by Better Auth
+- [ ] No duplicated user credentials in backend schema
+- [ ] Task records reference users via user_id
+
+### Frontend Rules Compliance
+- [ ] Backend communication through centralized API client
+- [ ] JWT tokens handled securely and attached automatically
+- [ ] Protected pages inaccessible to unauthenticated users
+
+### Monorepo Discipline Compliance
+- [ ] Frontend and backend in single monorepo
+- [ ] Clear separation of specs, frontend, and backend
+- [ ] CLAUDE.md files define navigation and behavioral rules
+
+### Validation & Compliance Check
+- [ ] Features validated against acceptance criteria
+- [ ] Integration testing confirms end-to-end behavior
+- [ ] Spec updates precede implementation when conflicts arise
 
 ## Project Structure
 

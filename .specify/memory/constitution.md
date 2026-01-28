@@ -1,55 +1,57 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT:
+Version change: N/A (initial version) → 1.0.0
+Modified principles: None (new constitution)
+Added sections: All principles and sections
+Removed sections: None
+Templates requiring updates:
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/spec-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/commands/*.md ⚠ pending
+Follow-up TODOs: None
+-->
+
+# Phase II – Todo Full-Stack Web Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-First Development
+No agent may implement or modify code without an explicit, approved specification. All work must originate from files inside the /specs directory. Specs are the single source of truth.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Agent Responsibility Boundaries
+Each agent must operate strictly within its defined role. No agent may perform another agent's responsibility. Cross-cutting changes must be coordinated through the Primary Orchestrator.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. No Manual Coding Rule
+Humans do not write application code. All implementation is performed by agents based on specs. Any deviation must be reflected first in specs.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Authentication & Identity Rule
+User authentication is handled exclusively by Better Auth on the frontend. Backend never manages passwords or sessions. User identity must always be derived from a verified JWT token. user_id must never be accepted from URL parameters or request bodies.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Security First
+All API endpoints require authentication unless explicitly stated otherwise. Unauthorized requests must return 401. Users can only access and modify their own data. Data isolation is mandatory at API and database levels.
 
-### [PRINCIPLE_6_NAME]
+### VI. API Design Rules
+RESTful conventions must be followed. API endpoints must match the API specs exactly. Backend behavior must align with acceptance criteria, not assumptions.
 
+### VII. Database Ownership Rule
+The users table is owned and managed externally by Better Auth. Backend database schema must not duplicate user credentials. All task records must reference users via user_id.
 
-[PRINCIPLE__DESCRIPTION]
+### VIII. Frontend Rules
+All backend communication must go through a centralized API client. JWT tokens must be securely handled and attached automatically to requests. Protected pages must not be accessible to unauthenticated users.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### IX. Monorepo Discipline
+Frontend and backend live in a single monorepo. Specs, frontend, and backend must remain clearly separated. CLAUDE.md files define navigation and behavioral rules for agents.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### X. Validation & Compliance
+Every feature must be validated against its acceptance criteria. Integration testing must confirm end-to-end behavior. If implementation and spec conflict, the spec must be updated first.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Enforcement
+Any violation of this constitution invalidates the implementation. Agents must stop and report if a rule conflict is detected.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Outcome
+A secure, scalable, multi-user, spec-driven full-stack Todo application that strictly follows agentic development principles.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution defines the non-negotiable rules, principles, and boundaries that all agents must follow while designing and implementing Phase II of the Todo Full-Stack Web Application using a spec-driven, agentic workflow. All agents must comply with these principles during development. Any amendments require explicit documentation and approval.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-18 | **Last Amended**: 2026-01-18
