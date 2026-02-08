@@ -5,6 +5,7 @@ import { TaskCard } from '@/components/todo/TaskCard';
 import { TaskForm } from '@/components/todo/TaskForm';
 import { apiClient } from '@/lib/api/client';
 import { useAuth } from '@/lib/auth';
+import { useTaskUpdate } from '@/contexts/TaskUpdateContext';
 import { Button } from '@/components/ui/Button';
 import { Toast } from '@/components/ui/Toast';
 
@@ -25,6 +26,7 @@ export const TaskList: React.FC = () => {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
   const { isAuthenticated, isLoading: authLoading, token } = useAuth();
+  const { taskUpdateTrigger } = useTaskUpdate();
 
   useEffect(() => {
     // Ensure token is set in API client from localStorage
@@ -42,7 +44,7 @@ export const TaskList: React.FC = () => {
       setLoading(false);
       setError('Please sign in to view your tasks');
     }
-  }, [isAuthenticated, authLoading, token]);
+  }, [isAuthenticated, authLoading, token, taskUpdateTrigger]);
 
   const fetchTasks = async () => {
     try {

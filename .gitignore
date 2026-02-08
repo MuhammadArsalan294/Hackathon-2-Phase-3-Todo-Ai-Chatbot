@@ -10,6 +10,9 @@ out/
 # Environment variables
 .env*
 !.env.example
+.env
+.env.local
+
 
 # Testing
 coverage/

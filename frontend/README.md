@@ -1,6 +1,6 @@
-# Frontend Todo Application
+# Frontend Todo Application with AI Chatbot
 
-This is a production-quality frontend for a multi-user Todo application built with Next.js, TypeScript, and Tailwind CSS.
+This is a production-quality frontend for a multi-user Todo application built with Next.js, TypeScript, and Tailwind CSS, featuring an integrated AI chatbot for natural language task management.
 
 ## Features
 
@@ -9,6 +9,9 @@ This is a production-quality frontend for a multi-user Todo application built wi
 - Protected routes and session management
 - Responsive design for desktop, tablet, and mobile
 - Accessible UI components
+- AI-powered chatbot with natural language interface
+- Floating chatbot icon accessible from all pages
+- Seamless integration with existing UI
 
 ## Tech Stack
 
@@ -74,6 +77,8 @@ frontend/
 ## API Integration
 
 The application uses a centralized API client located at `src/lib/api/client.ts` which automatically handles JWT token attachment and error normalization.
+
+The AI chatbot functionality uses an additional API client located at `src/lib/api-client.ts` for chat-specific operations.
 
 ## Security
 

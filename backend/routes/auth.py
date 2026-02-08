@@ -174,12 +174,14 @@ async def signup(signup_data: SignupRequest):
         save_mock_users(mock_users)
 
         # Generate a mock JWT token (similar to what Better Auth would do)
+        current_time = datetime.utcnow()
         token_data = {
             "userId": user_id,  # Better Auth typically uses userId
             "email": signup_data.email,
             "password_updated_at": mock_users[signup_data.email]["password_updated_at"].timestamp(),  # Include password update time
-            "exp": datetime.utcnow() + timedelta(days=30),  # 30 day expiration
-            "iat": datetime.utcnow().timestamp()  # Issued at time
+            "exp": current_time + timedelta(days=30),  # 30 day expiration
+            "iat": int(current_time.timestamp()),  # Issued at time (as integer to avoid precision issues)
+            "nbf": int(current_time.timestamp())   # Not before time (as integer to avoid precision issues)
         }
 
         token = jwt.encode(token_data, settings.BETTER_AUTH_SECRET, algorithm="HS256")
@@ -229,12 +231,14 @@ async def signin(signin_data: SigninRequest):
             )
 
         # Generate a JWT token
+        current_time = datetime.utcnow()
         token_data = {
             "userId": user["id"],
             "email": user["email"],
             "password_updated_at": user["password_updated_at"].timestamp(),  # Include password update time
-            "exp": datetime.utcnow() + timedelta(days=30),  # 30 day expiration
-            "iat": datetime.utcnow().timestamp()  # Issued at time
+            "exp": current_time + timedelta(days=30),  # 30 day expiration
+            "iat": int(current_time.timestamp()),  # Issued at time (as integer to avoid precision issues)
+            "nbf": int(current_time.timestamp())   # Not before time (as integer to avoid precision issues)
         }
 
         token = jwt.encode(token_data, settings.BETTER_AUTH_SECRET, algorithm="HS256")

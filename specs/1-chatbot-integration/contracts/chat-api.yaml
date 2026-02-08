@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: Todo Chat API
+  description: API for the Todo AI Chatbot Integration
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+
+paths:
+  /api/chat:
+    post:
+      summary: Process chat message and return AI response
+      description: Handles user chat messages, processes them with AI agent, and returns response with tool calls
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conversation_id:
+                  type: integer
+                  description: Optional conversation ID. If not provided, a new conversation is created.
+                  example: 123
+                message:
+                  type: string
+                  description: The user's message to the chatbot
+                  example: "Add a task to buy groceries"
+              required:
+                - message
+      responses:
+        '200':
+          description: Successful response from the AI chatbot
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation_id:
+                    type: integer
+                    description: The ID of the conversation (newly created or existing)
+                    example: 123
+                  response:
+                    type: string
+                    description: The AI's response to the user
+                    example: "I've added the task 'buy groceries' to your list."
+                  tool_calls:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the tool that was called
+                          example: "add_task"
+                        arguments:
+                          type: object
+                          description: Arguments passed to the tool
+                          example: {"title": "buy groceries"}
+        '401':
+          description: Unauthorized - Invalid or missing JWT token
+        '422':
+          description: Unprocessable Entity - Invalid request parameters
+        '500':
+          description: Internal Server Error
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

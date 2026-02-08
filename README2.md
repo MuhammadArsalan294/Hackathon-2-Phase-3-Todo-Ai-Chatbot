@@ -1,7 +1,3 @@
-#############################################################################################
-
-ab mjhe /sp.constitution ki prompt likh kar do 
-
 /sp.constitution
 
 Project: Phase II – Todo Full-Stack Web Application
@@ -74,9 +70,6 @@ A secure, scalable, multi-user, spec-driven full-stack Todo application that str
 ##################################################################################
 FRONTEND PROMPT
 ##################################################################################
-
-Mera constitution.md complete hogaya hai. Ab main sab sy phle frontend banana chahti hon tou uske hisaab sy mjhe /sp.specify ka prompt do. 
-Make sure frontend ki ui best or professional ho.
 
 /sp.specify
 
@@ -166,10 +159,7 @@ Output:
 - No backend code
 - No database logic
 
----------------------------------------------------------------------------------
-
-Mera sp.specify complete hogaya hai ab mjhe /sp.plan ki prompt likh kar do.
-
+-----------------------------------------------------------------------------
 
 /sp.plan
 
@@ -269,15 +259,6 @@ Create a .env file on frontend
 BETTER_AUTH_SECRET=RUsCCUetloa99hxgGomI36Gk9fy8Ubaf
 BETTER_AUTH_URL=https://localhost:8000/
 
----------------------------------------------------------------------------------
-
-cd frontend 
-npm run dev 
-
-agar error aye tw phir ye prompt dena hai claude ko
-Hi could you please run my Next.js project using npm run dev (or npm start if configured) and check if it starts correctly?
-If there are any errors please try to resolve them so that the project runs successfully on your environment.
-The project is in the frontend folders, and all TypeScript and Next.js configurations are already set up.
 
 
 ######################################################################
@@ -294,15 +275,6 @@ BETTER_AUTH_URL=https://localhost:3000/
 
 Ab mjhe full detail ky sath backend ky liye /sp.specify ki prompt bna kar do
 
-----------------------------------------------------------------------
-
-Neon Database search on google and login
-New project on click 
-project name 
-deploying an app
-create on click
-connect on click
-copy url "postgresql"
 
 ----------------------------------------------------------------------
 
@@ -425,10 +397,6 @@ Output:
 
 -------------------------------------------------------------------
 
-
-Mere /sp.specify ki prompt successfully run hogai hai ab mjhe /sp.plan ki prompt likh kar do detail.
-
-
 /sp.plan
 
 Project: Phase II – Todo Full-Stack Web Application (Backend)
@@ -542,28 +510,13 @@ Output Format:
 
 /sp.tasks
 
--------------------------------------------------------------------
+------------------------------------------------------------------
 
 /sp.implement
 
-
 -------------------------------------------------------------------
 
-cd backend
-uv venv (create virtual environment copy)
-paste here   (active  virtual environment)
-pip install -requirements.txt 
-python3 -m uvicorn.src.api.main:app --host 127.0.0.1 --port 8000 --reload
+################################################################################################
+################################################################################################
 
-
-cd backend
-uv venv
-.venv\Scripts\activate
-uvicorn main:app --reload
-
-##################################################################
-
-
-
-
-
+Ab mainey phase 2 todo full stack web apllication main agent or skill ky bad ye abhi jo sara prompt bheja hai frontend or backend asey mainey ye bhi bna lia hai ab mere todo web application successfully ban gai hai tm es ko dekh lo achy sy

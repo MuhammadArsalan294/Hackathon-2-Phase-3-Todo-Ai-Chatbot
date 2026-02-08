@@ -10,27 +10,61 @@ def decode_token(token: str) -> dict:
     Decode and verify JWT token from Better Auth
     """
     try:
-        # Decode the token using the secret
+        # Decode the token using the secret with leeway to handle clock skew
+        # Temporarily disable automatic verification to handle it manually
         payload = jwt.decode(
             token,
             settings.BETTER_AUTH_SECRET,
-            algorithms=["HS256"]  # Better Auth typically uses HS256 for symmetric encryption
+            algorithms=["HS256"],  # Better Auth typically uses HS256 for symmetric encryption
+            options={"verify_signature": True, "verify_exp": False, "verify_nbf": False, "verify_iat": False},  # Manual verification
         )
 
-        # Check if token is expired
+        # Manually check expiration with leeway
         exp = payload.get("exp")
-        if exp and datetime.fromtimestamp(exp) < datetime.utcnow():
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Token has expired",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
+        if exp:
+            # Add leeway to current time when comparing
+            current_time_with_leeway = datetime.utcnow() - timedelta(seconds=10)
+            if datetime.fromtimestamp(exp) < current_time_with_leeway:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token has expired",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+
+        # Manually check not-before with leeway
+        nbf = payload.get("nbf")
+        if nbf:
+            # Subtract leeway from current time when comparing
+            current_time_with_leeway = datetime.utcnow() + timedelta(seconds=10)
+            if datetime.fromtimestamp(nbf) > current_time_with_leeway:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token is not yet valid",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+
+        # Manually check issued-at with leeway
+        iat = payload.get("iat")
+        if iat:
+            # Subtract leeway from current time when comparing
+            current_time_with_leeway = datetime.utcnow() + timedelta(seconds=10)
+            if datetime.fromtimestamp(iat) > current_time_with_leeway:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token is not yet valid (iat)",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
 
         # Check if token was issued before password change (if password_updated_at is in token)
         password_updated_at = payload.get("password_updated_at")
         if password_updated_at:
             token_issue_time = payload.get("iat", datetime.utcnow().timestamp())  # Use issued at time if available
-            if token_issue_time < password_updated_at:
+            # Ensure both values are floats for comparison
+            token_issue_time = float(token_issue_time) if token_issue_time else datetime.utcnow().timestamp()
+            password_updated_at = float(password_updated_at) if password_updated_at else 0
+            
+            # Add a small tolerance (1 second) to account for timing differences during token creation
+            if token_issue_time < (password_updated_at - 1.0):
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Token is invalid because password has been changed",
@@ -39,17 +73,17 @@ def decode_token(token: str) -> dict:
 
         return payload
 
-    except jwt.ExpiredSignatureError:
+    except jwt.InvalidTokenError as e:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token has expired",
+            detail=f"Invalid token: {str(e)}",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    except jwt.InvalidTokenError:
+    except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid token",
+            detail=f"Token validation error: {str(e)}",
             headers={"WWW-Authenticate": "Bearer"},
         )
 

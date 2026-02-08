@@ -1,0 +1,242 @@
+openapi: 3.0.0
+info:
+  title: Todo MCP Tools API
+  description: MCP Tools for the Todo AI Chatbot - Backend operations exposed to AI agent
+  version: 1.0.0
+
+paths:
+  /mcp/tools/add_task:
+    post:
+      summary: Add a new task for the authenticated user
+      description: Creates a new task for the user identified by JWT context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the task
+                  example: "Buy groceries"
+                description:
+                  type: string
+                  description: Optional description of the task
+                  example: "Milk, bread, eggs"
+              required:
+                - title
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task_id:
+                    type: integer
+                    description: ID of the created task
+                    example: 123
+                  status:
+                    type: string
+                    description: Current status of the task
+                    example: "pending"
+                  title:
+                    type: string
+                    description: Title of the task
+                    example: "Buy groceries"
+        '401':
+          description: Unauthorized - Invalid JWT context
+        '500':
+          description: Internal Server Error
+
+  /mcp/tools/list_tasks:
+    post:
+      summary: List tasks for the authenticated user
+      description: Returns tasks for the user identified by JWT context
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [all, pending, completed]
+                  description: Filter tasks by status
+                  example: "pending"
+      responses:
+        '200':
+          description: List of user's tasks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: Task ID
+                          example: 123
+                        title:
+                          type: string
+                          description: Task title
+                          example: "Buy groceries"
+                        description:
+                          type: string
+                          description: Task description
+                          example: "Milk, bread, eggs"
+                        completed:
+                          type: boolean
+                          description: Whether the task is completed
+                          example: false
+        '401':
+          description: Unauthorized - Invalid JWT context
+        '500':
+          description: Internal Server Error
+
+  /mcp/tools/complete_task:
+    post:
+      summary: Mark a task as completed
+      description: Marks the specified task as completed for the authenticated user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_id:
+                  type: integer
+                  description: ID of the task to complete
+                  example: 123
+              required:
+                - task_id
+      responses:
+        '200':
+          description: Task marked as completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task_id:
+                    type: integer
+                    description: ID of the completed task
+                    example: 123
+                  status:
+                    type: string
+                    description: New status of the task
+                    example: "completed"
+                  title:
+                    type: string
+                    description: Title of the task
+                    example: "Buy groceries"
+        '401':
+          description: Unauthorized - Invalid JWT context
+        '404':
+          description: Task not found
+        '500':
+          description: Internal Server Error
+
+  /mcp/tools/delete_task:
+    post:
+      summary: Delete a task
+      description: Deletes the specified task for the authenticated user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_id:
+                  type: integer
+                  description: ID of the task to delete
+                  example: 123
+              required:
+                - task_id
+      responses:
+        '200':
+          description: Task deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task_id:
+                    type: integer
+                    description: ID of the deleted task
+                    example: 123
+                  status:
+                    type: string
+                    description: Status indicating deletion
+                    example: "deleted"
+                  title:
+                    type: string
+                    description: Title of the deleted task
+                    example: "Buy groceries"
+        '401':
+          description: Unauthorized - Invalid JWT context
+        '404':
+          description: Task not found
+        '500':
+          description: Internal Server Error
+
+  /mcp/tools/update_task:
+    post:
+      summary: Update a task
+      description: Updates the specified task for the authenticated user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_id:
+                  type: integer
+                  description: ID of the task to update
+                  example: 123
+                title:
+                  type: string
+                  description: New title for the task (optional)
+                  example: "Buy weekly groceries"
+                description:
+                  type: string
+                  description: New description for the task (optional)
+                  example: "Milk, bread, eggs, fruits"
+              required:
+                - task_id
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task_id:
+                    type: integer
+                    description: ID of the updated task
+                    example: 123
+                  status:
+                    type: string
+                    description: Current status of the task
+                    example: "pending"
+                  title:
+                    type: string
+                    description: Updated title of the task
+                    example: "Buy weekly groceries"
+        '401':
+          description: Unauthorized - Invalid JWT context
+        '404':
+          description: Task not found
+        '500':
+          description: Internal Server Error
