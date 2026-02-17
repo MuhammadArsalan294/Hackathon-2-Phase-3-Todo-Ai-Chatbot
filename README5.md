@@ -135,10 +135,10 @@ Continue on click
 Environment Variables on Click (Yaha frontend ki .env mein sy ye 3 copy paste karni hai key or value main ):
 
 Key (Key mein variable ka name jasey NEXT_PUBLIC_API_BASE_URL)
-Value (Value mein URL jasey https://muhammad-arsalan-todo-ai-chatbot.hf.space)
+Value (Value mein URL jasey https://muhammad-arsalan-todo-ai-chatbot-app.hf.space)
 
-NEXT_PUBLIC_API_BASE_URL=https://muhammad-arsalan-todo-ai-chatbot.hf.space
-BACKEND_API_URL=https://muhammad-arsalan-todo-ai-chatbot.hf.space
+NEXT_PUBLIC_API_BASE_URL=https://muhammad-arsalan-todo-ai-chatbot-app.hf.space
+BACKEND_API_URL=https://muhammad-arsalan-todo-ai-chatbot-app.hf.space
 BETTER_AUTH_SECRET=V017THIwxpQdInDRlH8FqtgiPLMyiH66
 
 Deploy on Click
