@@ -67,12 +67,12 @@ Spaces                (Jaha Spaces open hai waha )
 Settings on click
 New secret on click
 Name                  (.env ki file main jo neon data base ky variable ka name tha wo aye ga jasey NEON_DATABASE_URL)
-Value                 (Yaha .env ki file main jo neon data base ka url hai wo aye ga jasey postgresql+asyncpg://   
-                      neondb_owner:npg_6QrC0nugmDHc@ep-long-rain-ahu2hj7j-pooler.c-3.us-east-1.aws.neon.tech/neondb )
+Value                 (Yaha .env ki file main jo neon data base ka url hai wo aye ga jasey postgresql+asyncpg://
+                       neondb_owner:npg_pB50JqlQnKVf@ep-odd-credit-aij604lt-pooler.c-4.us-east-1.aws.neon.tech/neondb )
 Save on click 
 
-NEON_DATABASE_URL=postgresql+asyncpg://neondb_owner:npg_6QrC0nugmDHc@ep-long-rain-ahu2hj7j-pooler.c-3.us-east-1.aws.neon.tech/neondb
-BETTER_AUTH_SECRET=RUsCCUetloa99hxgGomI36Gk9fy8Ubaf
+NEON_DATABASE_URL=postgresql+asyncpg://neondb_owner:npg_pB50JqlQnKVf@ep-odd-credit-aij604lt-pooler.c-4.us-east-1.aws.neon.tech/neondb
+BETTER_AUTH_SECRET=V017THIwxpQdInDRlH8FqtgiPLMyiH66
 
 ------------------------------------
 
