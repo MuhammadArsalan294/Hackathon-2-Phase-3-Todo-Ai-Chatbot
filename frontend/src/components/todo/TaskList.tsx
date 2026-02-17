@@ -10,13 +10,13 @@ import { Button } from '@/components/ui/Button';
 import { Toast } from '@/components/ui/Toast';
 
 interface Task {
-  id: number;
-  user_id: string;
+  id?: number;
+  user_id?: string;
   title: string;
   description?: string;
   completed: boolean;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export const TaskList: React.FC = () => {
@@ -264,7 +264,7 @@ export const TaskList: React.FC = () => {
         </div>
       ) : (
         <ul className="divide-y divide-gray-100">
-          {tasks.map((task) => (
+          {tasks.filter((task): task is Task & { id: number } => task.id !== undefined).map((task) => (
             <TaskCard
               key={task.id}
               task={task}

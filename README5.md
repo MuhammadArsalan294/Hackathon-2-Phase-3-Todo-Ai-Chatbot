@@ -6,7 +6,7 @@ Hugginface search on google (https://huggingface.co/)
 Create a account             Arsalan0294@ Password
 Profile icon on click
 New Space on click
-Space name (todo-ai-chatbot)
+Space name (todo-ai-chatbot-app)
 Docker select 
 Public on click
 Create Space on click
@@ -15,12 +15,12 @@ Create Space on click
 
 Start by cloning this repo by using:
 
-git clone https://huggingface.co/spaces/Muhammad-Arsalan/todo-ai-chatbot    (Ye copy kia )
-Create a folder on desktop (Hackathon-2-Phase-3-Todo-Ai-Chatbot-Backend)
+git clone https://huggingface.co/spaces/Muhammad-Arsalan/todo-ai-chatbot-app  (Ye copy kia )
+Create a folder on desktop (Hackathon-2-Phase-3-Todo-Ai-Chatbot-App-Backend)
 cmd
-git clone https://huggingface.co/spaces/Muhammad-Arsalan/todo-ai-chatbot   (Ye paste kia )
+git clone https://huggingface.co/spaces/Muhammad-Arsalan/todo-ai-chatbot-app  (Ye paste kia )
 
-cd todo-ai-chatbot
+cd todo-ai-chatbot-app
 
 # Make sure the hf CLI is installed
 powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"    (Ye install ki cmd mein e)
@@ -31,8 +31,8 @@ Hackathon-2-Phase-3-Todo-Ai-Chatbot  (main project py click krna hai)
 backend         (main project py backend ky folder py click karna hai .pytest_cache or .venv file ky elawa sab file ko copy karna hai)
 
 
-Hackathon-2-Phase-3-Todo-Ai-Chatbot-Backend (Hackathon-2-Phase-3-Todo-Ai-Chatbot-Backend folder py click kia)
-todo-ai-chatbot              (todo-full-stack-web-app folder py click kia or main project sy backend ki file jo copy ki thi
+Hackathon-2-Phase-3-Todo-Ai-Chatbot-App-Backend (Hackathon-2-Phase-3-Todo-Ai-Chatbot-App-Backend folder py click kia)
+todo-ai-chatbot-app              (todo-full-stack-web-app folder py click kia or main project sy backend ki file jo copy ki thi
                                      wo paste ki or skip this file py click kia then
                                      delete file lock, uv, pyproject, .python-version, .env file ye delete krni hai)
 cmd
@@ -78,7 +78,7 @@ BETTER_AUTH_SECRET=V017THIwxpQdInDRlH8FqtgiPLMyiH66
 
 Hugginface main setting ky sath 3 dot hon gay os py click karna then Restart Space on click. 
 Again 3 dot on click then Embed this Space on click yaha Hugginging face py backend jo deploy hua hai os ka url hai ye copy krna hai. 
-( https://muhammad-arsalan-todo-ai-chatbot.hf.space )
+( https://muhammad-arsalan-todo-ai-chatbot-app.hf.space )
 
 Ab jo original website hai jaha frontend or backend hai os ko open kia waha frontend ky andr ja kar .env ki file ki main 
 https://127.0.0.1:8000 es ko remove kar kar yha backend ka url paste kar dein gay
@@ -102,7 +102,6 @@ hackathon-2-phase-2-todo-full-stack-web-application
 ./   enter
 no
 no
-
 
 
 ##############################################################################################
@@ -139,7 +138,7 @@ Key (Key mein variable ka name jasey NEXT_PUBLIC_API_BASE_URL)
 Value (Value mein URL jasey https://muhammad-arsalan-todo-ai-chatbot.hf.space)
 
 NEXT_PUBLIC_API_BASE_URL=https://muhammad-arsalan-todo-ai-chatbot.hf.space
-NEXT_PUBLIC_API_BASE_URL=https://muhammad-arsalan-todo-ai-chatbot.hf.space
+BACKEND_API_URL=https://muhammad-arsalan-todo-ai-chatbot.hf.space
 BETTER_AUTH_SECRET=V017THIwxpQdInDRlH8FqtgiPLMyiH66
 
 Deploy on Click

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Input } from './Input';
 
-interface PasswordFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface PasswordFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
   error?: string;
   helperText?: string;

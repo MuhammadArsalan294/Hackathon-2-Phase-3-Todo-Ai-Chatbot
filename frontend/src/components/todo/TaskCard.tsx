@@ -6,17 +6,17 @@ import { Modal } from '@/components/ui/Modal';
 import { TaskForm } from '@/components/todo/TaskForm';
 
 interface Task {
-  id: number;
-  user_id: string;
+  id?: number;
+  user_id?: string;
   title: string;
   description?: string;
   completed: boolean;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface TaskCardProps {
-  task: Task;
+  task: Task & { id: number };
   onToggleComplete: (id: number, currentStatus: boolean) => void;
   onUpdate: (task: Task) => void;
   onDelete: (id: number) => void;
@@ -65,7 +65,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onToggleComplete, onUp
                   <svg className="mr-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <span>Created: {new Date(task.created_at).toLocaleDateString()}</span>
+                  <span>Created: {task.created_at ? new Date(task.created_at).toLocaleDateString() : 'N/A'}</span>
                 </div>
                 {task.completed && (
                   <span className="ml-3 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">

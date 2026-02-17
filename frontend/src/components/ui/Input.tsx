@@ -1,12 +1,21 @@
 import React from 'react';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+interface BaseInputProps {
   label?: string;
   error?: string;
   helperText?: string;
   fullWidth?: boolean;
-  type?: 'text' | 'email' | 'password' | 'number' | 'textarea';
 }
+
+interface TextInputProps extends BaseInputProps, Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  type?: 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url';
+}
+
+interface TextareaInputProps extends BaseInputProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  type: 'textarea';
+}
+
+type InputProps = TextInputProps | TextareaInputProps;
 
 export const Input: React.FC<InputProps> = ({
   label,
@@ -22,14 +31,14 @@ export const Input: React.FC<InputProps> = ({
   const errorClasses = error ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : 'focus:ring-[rgb(var(--primary-rgb))] focus:border-[rgb(var(--primary-rgb))]';
   const elementClasses = `${baseClasses} ${errorClasses} ${className} py-3 px-4 bg-white`;
 
-  const uniqueId = props.id || `input-${Math.random().toString(36).substr(2, 9)}`;
+  const uniqueId = (props as any).id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
     <div className={containerClasses}>
       {label && (
         <label htmlFor={uniqueId} className="block text-sm font-medium text-gray-700 mb-2">
           {label}
-          {props.required && <span className="text-red-500 ml-1" aria-label="required">*</span>}
+          {(props as any).required && <span className="text-red-500 ml-1" aria-label="required">*</span>}
         </label>
       )}
       {type === 'textarea' ? (
